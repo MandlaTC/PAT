@@ -57,3 +57,28 @@ CREATE TABLE
         dateOfPurchase DATE,
         FOREIGN KEY (userID) REFERENCES user(userID)
     );
+
+CREATE TABLE
+    IF NOT EXISTS battleOFTheBands(
+        bandID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        bandFee INT
+    );
+
+CREATE TABLE
+    IF NOT EXISTS bandMembers(
+        memberID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        bandID INT,
+        memberName VARCHAR(255),
+        memberSurname VARCHAR(255),
+        dob VARCHAR(255),
+        hasCriminalRecord TINYINT,
+        FOREIGN KEY (bandID) REFERENCES battleOfTheBands(bandID)
+    );
+
+CREATE TABLE
+    IF NOT EXISTS rankings(
+        rankID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        ranking INT,
+        bandID INT,
+        FOREIGN KEY (bandID) REFERENCES battleOfTheBands(bandID)
+    );
