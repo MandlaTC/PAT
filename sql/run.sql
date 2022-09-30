@@ -34,3 +34,26 @@ VALUES (
         "South Africa",
         0
     );
+
+CREATE TABLE
+    IF NOT EXISTS merchandise (
+        merchID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        merchandiseName VARCHAR(255),
+        merchaniseStock INT
+    );
+
+CREATE TABLE
+    IF NOT EXISTS refund (
+        refundID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        merchID INT,
+        dateOfRefund DATE,
+        FOREIGN KEY (merchID) REFERENCES merchandise(merchID)
+    );
+
+CREATE TABLE
+    IF NOT EXISTS receipt (
+        receiptID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        userID INT,
+        dateOfPurchase DATE,
+        FOREIGN KEY (userID) REFERENCES user(userID)
+    );
