@@ -25,7 +25,7 @@ INSERT INTO
         isAdmin
     )
 VALUES (
-        "Mandla",
+        "Mandla T",
         "Chavarika",
         "mandlac12@gmail.com",
         'M',
