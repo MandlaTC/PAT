@@ -10,6 +10,7 @@ CREATE TABLE
         userDOB VARCHAR(10),
         userAddress VARCHAR(255),
         userCountryOfBirth VARCHAR(255),
+        userPassword VARCHAR(255),
         isAdmin BOOLEAN
     );
 
@@ -51,14 +52,6 @@ CREATE TABLE
     );
 
 CREATE TABLE
-    IF NOT EXISTS receipt (
-        receiptID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        userID INT,
-        dateOfPurchase DATE,
-        FOREIGN KEY (userID) REFERENCES user(userID)
-    );
-
-CREATE TABLE
     IF NOT EXISTS battleOFTheBands(
         bandID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
         bandFee INT
@@ -81,4 +74,23 @@ CREATE TABLE
         ranking INT,
         bandID INT,
         FOREIGN KEY (bandID) REFERENCES battleOfTheBands(bandID)
+    );
+
+CREATE TABLE
+    IF NOT EXISTS bookings(
+        ticketID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        amountOfTickets INT,
+        concertName VARCHAR(255)
+    );
+
+CREATE TABLE
+    IF NOT EXISTS transactions(
+        transactionID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        merchID INT,
+        ticketID INT,
+        userID INT,
+        amount INT,
+        FOREIGN KEY (merchID) REFERENCES merchandise(merchID),
+        FOREIGN KEY (userID) REFERENCES user(userID),
+        FOREIGN KEY (ticketID) REFERENCES concerts(ticketID)
     );
